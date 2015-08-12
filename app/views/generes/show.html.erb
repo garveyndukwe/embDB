@@ -1,0 +1,12 @@
+<% full_title("Project") %>
+
+
+<h4><%="Code :" << @genere.code %></h4>
+<h4><%= "Botanical :" << @genere.botanical_name %></h4>
+<h4><%= "Common :" << @genere.common_name %></h4>
+
+<%= link_to 'Goto Specie Index', generes_path %>      |
+<%= link_to 'Edit Specie', edit_genere_path(@genere) %>      |
+<%= link_to 'Delete Specie', @genere, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to "Add Specie", new_genere_path(@genere) %>
+

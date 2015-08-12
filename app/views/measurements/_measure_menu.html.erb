@@ -1,0 +1,8 @@
+<%= link_to " Measurement Index", project_forest_tree_measurements_path(@project, @forest, @tree, @measurement)%>  |
+<%= link_to "Add  Measurement", [:new, @project, @forest, @tree, @measurement] %>  |
+<%= link_to "Edit  Measurement", [:edit, @project, @forest, @tree, @measurement] %>  |
+<%= link_to "Delete Measurement", [@project, @forest,@tree, @measurement], method: :delete,
+            data: {
+                    confirm: "Are you sure you want to delete this  Measurement?"
+            }
+%>

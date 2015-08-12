@@ -1,0 +1,9 @@
+<%= link_to "Tree Index", project_forest_trees_path(@project, @forest)%>  |
+<%= link_to "Add Tree", new_project_forest_tree_path(@project, @forest) %>  |
+<%= link_to "Add Measurments", new_project_forest_tree_measurement_path(@project, @forest,@tree) %>  |
+<%= link_to "Edit Tree", [:edit, @project, @forest, @tree] %>  |
+<%= link_to "Delete Tree", [@project, @forest,@tree], method: :delete,
+            data: {
+                    confirm: "Are you sure you want to delete this tree?"
+            }
+%>

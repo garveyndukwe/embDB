@@ -1,0 +1,32 @@
+    <h1>Projects</h1>
+    <%= link_to "Add Project", new_project_path %>
+
+<br>
+<table>
+  <thead>
+
+  <tr>
+    <th>Title</th>
+    <th>Created</th>
+    <th colspan="3"></th>
+  </tr>
+
+  </thead>
+
+  <tbody>
+
+  <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, project %></td>
+        <td><%= project.created_at%></td>
+         <td> </td>
+        <td><%= link_to 'Edit', edit_project_path(project) %></td>
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+
+
+

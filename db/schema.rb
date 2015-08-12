@@ -11,7 +11,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150805110302) do
+ActiveRecord::Schema.define(version: 20150812082715) do
+
+  create_table "forests", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.boolean  "plantation",  default: true
+    t.string   "specie"
+    t.date     "established"
+    t.date     "enumerated"
+    t.string   "location",                   null: false
+    t.string   "gps"
+    t.float    "area"
+    t.string   "comment"
+    t.integer  "project_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "forests", ["project_id"], name: "index_forests_on_project_id"
+
+  create_table "generes", force: :cascade do |t|
+    t.string   "code"
+    t.string   "botanical_name"
+    t.string   "common_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "measurements", force: :cascade do |t|
+    t.string   "tree_code"
+    t.decimal  "girth"
+    t.decimal  "height"
+    t.date     "taken_at"
+    t.integer  "tree_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "rels", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string   "code"
+    t.string   "botanical_name"
+    t.string   "common_name"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "trees", force: :cascade do |t|
+    t.string   "code"
+    t.integer  "number"
+    t.string   "specie"
+    t.string   "status"
+    t.string   "comment"
+    t.integer  "forest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "trees", ["forest_id"], name: "index_trees_on_forest_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

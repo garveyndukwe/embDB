@@ -1,0 +1,62 @@
+  <div id='forest'>
+    <% full_title("Project") %>
+    <ul>
+        <h2><%= @forest.name %></h2>
+        <h3>
+
+          <%= simple_format(@forest.description) %>
+
+        </h3>
+        <h6>
+            <span id="author">Created by <%= current_user.email %></span>
+        </h6>
+           <span>
+             <%= link_to "Go to Forest Index", project_forests_path %>  |
+             <%= link_to "Goto Tree Index",  project_forest_trees_path(@project,@forest,@tree) %>  |
+             <%= link_to "Edit Forest", [:edit, @project, @forest] %>  |
+             <%= link_to "Delete Forest", [@project, @forest], method: :delete,
+                         data: {
+                                 confirm: "Are you sure you want to delete this forest?"
+                         }
+             %>
+           </span>
+
+        <ul>
+          Plantation: <%= @forest.plantation %>  - Specie:-  <%= (@forest.specie) %>   - Location:   <%= (@forest.location) %>  -  <%= (@forest.gps) %>  - Area:  <%= number_with_delimiter(@forest.area) %>
+        </ul>
+        <ul>
+          Enumerated on: <%= @forest.established %>  , Last Counted -  <%= (@forest.enumerated) %>
+        </ul>
+        <ul>
+          #Comment-  <%= (@forest.comment) %>
+        </ul>
+  </ul>
+ </div>
+
+
+
+
+    <div>
+      <ul>
+          <% if @forest.trees.count > 0 %>
+          <table>
+            <thead>
+            <tr>
+                  <th>Number of Trees</th>
+                  <th colspan="3"></th>
+                  <th>Average Girth of Trees</th>
+                  <th>Average height of Trees</th>
+                  <th>By Specie </th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            </tbody>
+          </table>
+          <% else %>
+            <% flash[:notice] = "No trees found, click Goto Tree Index" %>
+          <% end %>
+      </ul>
+    </div>
+

@@ -1,0 +1,33 @@
+<header>
+
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://frin.org.ng/">Emm-Database</a>
+    </div>
+
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><%= link_to "Home", root_path %></li>
+
+      <% if user_signed_in? %>
+          <li><%= link_to "Projects", projects_path %></li>
+          <li> <%= link_to "Specie", generes_path %> </li>
+
+          <li><%= link_to current_user.email%></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path %></li>
+          <!-- Setting menu -->
+                 <li>  <%= link_to 'Profile', edit_user_registration_path %></li>
+                  <li class="divider"></li>
+
+              <% else %>
+                  <li>  <%= link_to "Sign up", new_user_registration_path %> </li>
+                  <li><%= link_to "Sign in", new_user_session_path %></li>
+              <% end %>
+            </ul>
+
+  </div><!-- /.navbar-collapse -->
+
+</nav>
+
+</header>

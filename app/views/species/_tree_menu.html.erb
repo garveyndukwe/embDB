@@ -1,0 +1,44 @@
+<%= link_to "Tree Index", project_forest_trees_path(@project, @forest)%>  |
+<%= link_to "Add Tree", new_project_forest_tree_path(@project, @forest) %>  |
+<%= link_to "Measurments" %>  |
+<%= link_to "Edit Tree", [:edit, @project, @forest, @tree] %>  |
+<%= link_to "Delete Tree", [@project, @forest,@tree], method: :delete,
+            data: {
+                    confirm: "Are you sure you want to delete this tree?"
+            }
+%>
+
+<%= form_for(@specie) do |f| %>
+    <% if @specie.errors.any? %>
+        <div id = "error_explanation">
+          <h2><%=  pluralize(@specie.errors.count,"error") %>
+            prohibited this specie from being saved
+          </h2>
+          <ul>
+            <% @specie.errors.full_messages.each do |msg| %>
+                <li><%=  msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+
+    <div class="field">
+      <%= f.label :code %><br/>
+      <%= f.text_field :code %>
+    </div>
+
+    <div class="field">
+      <%= f.label :botanical_name %><br/>
+      <%= f.text_field :botanical_name %>
+    </div>
+
+    <div class="field">
+      <%= f.label :common_name %><br/>
+      <%= f.text_field :common_name %>
+    </div>
+    <div class="field">
+      <%= f.submit %>
+    </div>
+<% end %>

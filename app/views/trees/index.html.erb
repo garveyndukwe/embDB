@@ -1,0 +1,43 @@
+  <div>
+    <ul id='tree'>
+
+      <h3>Forest: <%= @forest.name %>   </h3>
+       <%= pluralize(@forest.trees.count,"tree")%>  found
+    </ul>
+    <ul>
+      <%= link_to "Add Tree", new_project_forest_tree_path(@project, @forest) %>
+    </ul>
+  </div>
+
+  <div>
+    <ul>
+    <% if @forest.trees.count > 0 %>
+            <table>
+              <thead>
+              <tr>
+                    <th>Tree Listing</th>
+                    <th colspan="3"></th>
+              </tr>
+              </thead>
+
+              <tbody>
+                      <% @forest.trees.each do |tree| %>
+
+                           <tr>
+                               <td> #<%= tree.number %>
+                                <%= link_to tree.code, [ @project, @forest, tree] %> ,
+                                 <%= tree.specie %>
+                               </td>
+
+                           </tr>
+
+                      <% end %>
+              </tbody>
+
+            </table>
+     <%else%>
+          <% flash[:notice]="No trees found, click Add Tree" %>
+    <%  end %>
+
+    </ul>
+  </div>

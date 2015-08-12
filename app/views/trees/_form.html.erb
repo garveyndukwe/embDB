@@ -1,0 +1,52 @@
+<%= form_for([@project,@forest,@tree]) do |f| %>
+        <% if @tree.errors.any? %>
+            <div id = "error_explanation">
+              <h2><%=  pluralize(@tree.errors.count,"error") %>
+                prohibited this forest from being saved
+              </h2>
+              <ul>
+                <% @tree.errors.full_messages.each do |msg| %>
+                    <li><%=  msg %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+<section>
+  <ul>
+
+      <p>
+        <% if self.action_name == 'new'  %>
+            <%    @tree.number = increment(@forest.trees.count)  %>
+            <%   @tree.code = concatenate(@project.id,@forest.id)  %>
+            <%=   @tree.code = concatenate(@tree.code,@tree.number)  %>
+        <% end %>
+
+        <%= f.label "Tree code is " << @tree.code %><br>
+        <%= f.text_field :code, readonly:true %>
+
+      </p>
+
+      <p>
+        <%= f.label :number %><br/>
+        <%= f.number_field :number, readonly: true %>
+      </p>
+
+      <p>
+         <%= f.label :specie %><br/>
+         <%= f.text_field :specie %>
+       </p>
+      <p>
+        <%= f.label :status %><br/>
+        <%= f.text_field :status %>
+      </p>
+
+      <p>
+        <%= f.label :comment %><br/>
+        <%= f.text_area :comment %>
+      </p>
+             <%= f.submit %>
+  </ul>
+</section>
+
+<% end %>

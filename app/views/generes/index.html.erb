@@ -1,0 +1,36 @@
+    <h1>Species</h1>
+    <%= link_to "Add Specie", new_genere_path %>
+
+<br>
+    <% if @generes.count > 0 %>
+<table>
+  <thead>
+
+  <tr>
+    <th>Code name</th><th colspan="1"></th>
+    <th>Common name</th>
+    <th>Botanical name</th>
+
+  </tr>
+
+  </thead>
+
+  <tbody>
+
+  <% @generes.each do |gen| %>
+      <tr>
+        <td><%= link_to gen.code, gen %></td>
+        <td colspan="1"></td>
+        <td><%= gen.common_name%></td>
+        <td><%= gen.botanical_name%></td>
+         <td> </td>
+
+      </tr>
+  <% end %>
+
+  </tbody>
+</table>
+        <% end  %>
+
+
+

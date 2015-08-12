@@ -1,0 +1,17 @@
+<section>
+  <ul>
+    <div id='tree'>
+
+      <h3>Measurement for tree <%= @measurement.tree_code %></h3>
+      <ul>
+        <h4>Measurement Year : <%= @measurement.taken_at.year %></h4>
+        <h4>Girth (m)        : <%= @measurement.girth %></h4>
+        <h4>Height(m)        : <%= @measurement.height %></h4>
+        <h4>Reading taken on : <%= @measurement.taken_at %></h4>
+
+      </ul>
+
+    </div>
+    <%= render "measure_menu" %>
+  </ul>
+</section>

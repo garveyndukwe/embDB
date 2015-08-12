@@ -1,11 +1,24 @@
 Rails.application.routes.draw do
+
   root to: 'visitors#index'
   devise_for :users
-   resources :users do
 
 
+  resources :projects do
+    resources :forests do
+      resources :trees do
+        resources :measurements
+      end
+    end
+  end
 
-   end
+  resources :generes
+  resources :species
+
+  #get 'measurements/new'
+#  get 'measurements/edit'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
