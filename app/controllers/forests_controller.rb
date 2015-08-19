@@ -1,7 +1,7 @@
 class ForestsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project
-  before_action :set_forest, only: [:show, :edit, :update, :destroy]
+  before_action :set_forest, only: [:generate, :show, :edit, :update, :destroy]
 
     def index
       @forests = Forest.all
@@ -12,6 +12,9 @@ class ForestsController < ApplicationController
       @forest = @project.forests.build
     end
 
+  def generate
+
+  end
     def create
       @forest =@project.forests.build(forest_params)
 

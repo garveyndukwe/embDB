@@ -7,28 +7,36 @@
   <thead>
 
   <tr>
-    <th>Code name</th><th colspan="1"></th>
-    <th>Common name</th>
+    <th>Code name </th><th colspan="2"></th>
     <th>Botanical name</th>
+    <th>Common name</th>
 
   </tr>
 
   </thead>
 
+  <%= paginate @generes %>
+
+<ul>
+
   <tbody>
 
   <% @generes.each do |gen| %>
+      <%#= render @generes %>
       <tr>
-        <td><%= link_to gen.code, gen %></td>
-        <td colspan="1"></td>
+        <td><%= link_to gen.code, gen %></td><td colspan="2"></td>
+
+
+        <td><i><%= gen.botanical_name%></i></td>
         <td><%= gen.common_name%></td>
-        <td><%= gen.botanical_name%></td>
+
          <td> </td>
 
       </tr>
   <% end %>
 
   </tbody>
+</ul>
 </table>
         <% end  %>
 

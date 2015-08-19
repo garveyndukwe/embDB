@@ -16,7 +16,7 @@
   <ul>
 
       <p>
-        <% if self.action_name == 'new'  %>
+        <% if @tree.new_record?  %>
             <%    @tree.number = increment(@forest.trees.count)  %>
             <%   @tree.code = concatenate(@project.id,@forest.id)  %>
             <%=   @tree.code = concatenate(@tree.code,@tree.number)  %>
@@ -33,8 +33,15 @@
       </p>
 
       <p>
-         <%= f.label :specie %><br/>
-         <%= f.text_field :specie %>
+        <%= f.label :specie %><br/>
+        <% if @forest.plantation? %>
+            <% @tree.specie= @forest.specie %>
+            <%= f.text_field :specie, readonly: true %>
+            <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: false, readonly: true %>
+         <% else %>
+            <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true %>
+             <%#= f.collection_select :person_id, Author.all, :id, :name_with_initial, prompt: true %>
+        <% end %>
        </p>
       <p>
         <%= f.label :status %><br/>

@@ -26,6 +26,7 @@
 
       <tbody>
       <% @species.each do |specie| %>
+       <%= render specie.code %>
           <tr>
           <td>#<%= specie.code %></td>
           <td><it><%= link_to specie.botanical_name, [specie] %></it></td>

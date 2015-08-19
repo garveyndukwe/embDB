@@ -1,32 +1,41 @@
   <div>
     <ul id='tree'>
 
-      <h3>Forest: <%= @forest.name %>   </h3>
-       <%= pluralize(@forest.trees.count,"tree")%>  found
+      <h3> <%= "Tree Index for Forest: #{@forest.name}" %>   </h3>
+
     </ul>
     <ul>
+      <%= link_to "Go to Forest Index", project_forests_path %>  |
       <%= link_to "Add Tree", new_project_forest_tree_path(@project, @forest) %>
+      <br>
+
     </ul>
   </div>
 
   <div>
     <ul>
+      <p><%= "Tree Listing" %> </p>
+      <p><%= pluralize(@forest.trees.count,"tree")%>  found</p>
+    </ul>
+    <ul>
+
     <% if @forest.trees.count > 0 %>
+
             <table>
               <thead>
               <tr>
-                    <th>Tree Listing</th>
-                    <th colspan="3"></th>
+                    <th>Num  ...  Code  ...  Measurements</th>
               </tr>
               </thead>
-
+              <%= paginate @trees %>
               <tbody>
                       <% @forest.trees.each do |tree| %>
+                        <%#= render @trees %>
 
                            <tr>
-                               <td> #<%= tree.number %>
-                                <%= link_to tree.code, [ @project, @forest, tree] %> ,
-                                 <%= tree.specie %>
+                               <td>
+                                <%= link_to '#' << (tree.number.to_s << " ...  " << tree.code << '  ...  ' <<  tree.measurements.count.to_s ), [ @project, @forest, tree] %>
+
                                </td>
 
                            </tr>

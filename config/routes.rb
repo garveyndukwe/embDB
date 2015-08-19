@@ -1,13 +1,31 @@
 Rails.application.routes.draw do
 
+  get 'autogen/index'
+
+  get 'autogen/tree'
+
+  get 'autogen/report'
+
+  get 'reports/index'
+
+  get 'reports/new'
+
+  get 'reports/show'
+
+  get 'reports/edit'
+
   root to: 'visitors#index'
   devise_for :users
 
 
   resources :projects do
     resources :forests do
+      member do
+        get 'generate'
+      end
       resources :trees do
         resources :measurements
+
       end
     end
   end

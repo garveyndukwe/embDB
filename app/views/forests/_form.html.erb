@@ -1,4 +1,5 @@
-<%= form_for([@project,@forest]) do |f| %>
+
+  <%= form_for([@project,@forest]) do |f| %>
     <% if @forest.errors.any? %>
         <div id = "error_explanation">
           <h2><%=  pluralize(@forest.errors.count,"error") %>
@@ -12,50 +13,77 @@
         </div>
     <% end %>
 
-<section>
-  <p>
-          <%= f.label :name %><br/>
-          <%= f.text_field :name %>
-        </p>
-        <p>
-          <%= f.label :description %><br/>
-          <%= f.text_area :description %>
-        </p>
-        <p>
-          <%= f.label :plantation %><br/>
-          <%= f.check_box :plantation %>
-        </p>
-        <p>
-          <%= f.label :specie %><br/>
-          <%= f.text_field :specie %>
-        </p>
-</section>
+    <ul>
+                <div class="field">
+                  <%= f.label :name %><br/>
+                  <%= f.text_field :name %>
+                </div>
+                <div class="field">
+                  <%= f.label :description %><br/>
+                  <%= f.text_area :description, rows:3, cols:40 %>
+                </div>
+                <div class="field">
+                  <%= f.label :plantation %><br/>
+                  <%= f.check_box :plantation %>
 
-        <p>
-          <%= f.label :established %><br/>
-          <%= f.date_select :established, start_year: 1960,end_year:1990 %>
-        </p>
-        <p>
-          <%= f.label :enumerated %><br/>
-          <%= f.date_select :enumerated, start_year: 1960,end_year:1990 %>
-        </p>
-        <p>
-          <%= f.label :location %><br/>
-          <%= f.text_field :location %>
-        </p>
-        <p>
-          <%= f.label :gps,"Gps Cordinates" %><br/>
-          <%= f.text_field :gps %>
-        </p>
+                </div>
 
-        <p>
-          <%= f.label :area %><br/>
-          <%= f.text_field :area %>
-        </p>
-        <p>
-          <%= f.label :comment %><br/>
-          <%= f.text_area :comment %>
-        </p>
+                <div class="field">
 
-         <%= f.submit %>
+
+                  <% if @forest.new_record? %>
+                      <%= f.label :specie %><br/>
+                    <% if @forest.plantation? %>
+                          <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true %>
+                      <% else %>
+                          <%= @forest.specie= 1 %>
+                          <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true,readonly: true %>
+                      <% end %>
+
+                  <% else %>
+                      <%= f.label 'Specie should not be changed' %><br/>
+                      <%= specie= @forest.specie %><br/>
+                      <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true, readonly: true %>
+                  <% end %>
+                </div>
+
+
+                <div class="field">
+                  <%= f.label :established %><br/>
+                  <%= f.date_select :established, start_year: 1960,end_year:1990 %>
+                </div>
+                <div class="field">
+                  <%= f.label :enumerated %><br/>
+                  <%= f.date_select :enumerated, start_year: 1960,end_year:1990 %>
+                </div>
+                <div class="field">
+                  <%= f.label :location %><br/>
+                  <%= f.text_field :location %>
+                </div>
+                <div class="field">
+                  <%= f.label :gps,"Gps Cordinates" %><br/>
+                  <%= f.text_field :gps %>
+                </div>
+
+                <div class="field">
+                  <%= f.label 'Area in Square Meter' %><br/>
+                  <%= f.text_field :area %>
+                </div>
+                <div class="field">
+                  <%= f.label :comment %><br/>
+                  <%= f.text_area :comment, rows: 3, cols:60 %>
+                </div>
+
+       <div class="actions">
+              <%if @forest.new_record? %>
+                  <% f.submit 'Create Forest'%>
+                    <% else %>
+                       `<%if specie != @forest.specie %>
+                          <%= flash[:alert] ='Specie has been be changed' %>
+                          <% else %>
+                         <% end %>`
+                  <% f.submit 'Update Forest Changes'%>
+              <% end %>
+       </div>
+    </ul>
 <% end %>

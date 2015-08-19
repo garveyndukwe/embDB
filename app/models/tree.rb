@@ -5,8 +5,8 @@ class Tree < ActiveRecord::Base
 
 
 #  validates_length_of  :code, minimum:2
-  #before_validation :set_code
-  validates  :code, :number, presence: true, uniqueness: true
+  validates  :number, presence: true
+  validates  :code, presence: true, uniqueness: true
 
 
 

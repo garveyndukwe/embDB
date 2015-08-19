@@ -1,0 +1,25 @@
+<div>
+  <ul id='tree'>
+    <h2>Generating 10 trees for <%= @forest.name%>  </h2>
+    <p>
+      <%= link_to "Tree Index", project_forest_trees_path(@project, @forest)%>
+    </p>
+    <p>
+      <% init_count = @forest.trees.count %>
+      <%= "#{init_count} Trees found" %>
+    </p>
+    <%= "Generating 10 Trees" %>
+    <% generate_trees(3) %>
+    <p>
+      You have automatically generated 10 trees.
+      The 'Status' and 'Comment' fields are marked with 'N/A' <br>
+      Please Goto the Tree Index (click "Tree Index " menu item above) <br>
+      Next, Goto each tree item and Edit each new tree by clicking on it first <br>
+      Now, fill in the correct 'Status' and 'Comment' fields
+
+    </p>
+    <p>
+      <%= "#{@forest.trees.count} " << 'trees total '%>
+    </p>
+  </ul>
+</div>

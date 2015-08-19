@@ -1,3 +1,13 @@
-<h1>New Forests</h1>
+<h2>Adding a forest to <%= @project.name %> </h2>
+<div class="actions">
+
+  <ul>
+    <%= link_to "Go to Forest Index", project_forests_path %>  |
+    <%= link_to "Show Forest", [ @project, @forest] %>
+  </ul>
+
+  </div>
+<br>
+
 <%= render "form" %>
 

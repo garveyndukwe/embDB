@@ -27,8 +27,12 @@
       <%= f.label :common_name %><br/>
       <%= f.text_field :common_name %>
     </div>
-    <div class="field">
-      <%= f.submit %>
+    <div class="actions">
+      <%if @genere.new_record? %>
+          <%= f.submit 'Create Specie' %>
+      <% else %>
+          <%= f.submit 'Update Specie' %>
+      <% end %>
     </div>
 </ul>
 <% end %>

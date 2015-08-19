@@ -7,7 +7,7 @@ class MeasurementsController < ApplicationController
     before_action :set_measure, only: [:show, :edit, :update, :destroy]
 
     def index
-      @measurements = Measurement.all
+      @measurements = Measurement.order(:tree_code).page(params[:page]).per(10)
       redirect_to [@project,@forest, @tree]
     end
 

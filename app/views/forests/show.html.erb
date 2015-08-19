@@ -1,11 +1,11 @@
-  <div id='forest'>
+ <div id='forest'>
     <% full_title("Project") %>
     <ul>
-        <h2><%= @forest.name %></h2>
+        <h2><%= "Forest #{@forest.name}" %></h2>
         <h3>
 
-          <%= simple_format(@forest.description) %>
 
+          <%= simple_format(@forest.description) %>
         </h3>
         <h6>
             <span id="author">Created by <%= current_user.email %></span>
@@ -13,6 +13,7 @@
            <span>
              <%= link_to "Go to Forest Index", project_forests_path %>  |
              <%= link_to "Goto Tree Index",  project_forest_trees_path(@project,@forest,@tree) %>  |
+             <%= link_to "Auto-Generate Trees", [:generate, @project, @forest] %>  |
              <%= link_to "Edit Forest", [:edit, @project, @forest] %>  |
              <%= link_to "Delete Forest", [@project, @forest], method: :delete,
                          data: {
@@ -21,42 +22,36 @@
              %>
            </span>
 
-        <ul>
-          Plantation: <%= @forest.plantation %>  - Specie:-  <%= (@forest.specie) %>   - Location:   <%= (@forest.location) %>  -  <%= (@forest.gps) %>  - Area:  <%= number_with_delimiter(@forest.area) %>
-        </ul>
-        <ul>
-          Enumerated on: <%= @forest.established %>  , Last Counted -  <%= (@forest.enumerated) %>
-        </ul>
-        <ul>
-          #Comment-  <%= (@forest.comment) %>
-        </ul>
+      <%= form_for([@project,@forest]) do |f| %>
+          <p>              <br>
+          <% if @forest.plantation %>
+                <b><%= "A Plantation "%></b>
+          <%else %>
+                 <b><%= "A Natural forest" %></b>
+          <%end %>
+          </p>
+          <p>
+            <%= f.label "Specie:" %>
+            <%= f.text_field :specie %>
+          </p>
+          <p>
+            <%= f.label "Location" %>
+            <%= ( f.text_field :location) %>
+            <%= f.label "Cordinates" %>
+            <%= f.text_field :gps %>
+            <%= f.label " Area:" %>
+            <%= number_with_delimiter(f.text_field :area) %> m<sup>3</sup>
+        </p>
+        <p>
+          <%= f.label "Enumerated on:" %>
+          <%= @forest.established %>  ,
+          <%= f.label " Last Counted"%>
+            <%= (@forest.enumerated) %>
+        </p>
+        <p>
+          <%= f.label "Comment"%> <br>
+          <%= f.text_area :comment, cols: 60, rows:2 %>
+        </p>
+      <% end %>
   </ul>
  </div>
-
-
-
-
-    <div>
-      <ul>
-          <% if @forest.trees.count > 0 %>
-          <table>
-            <thead>
-            <tr>
-                  <th>Number of Trees</th>
-                  <th colspan="3"></th>
-                  <th>Average Girth of Trees</th>
-                  <th>Average height of Trees</th>
-                  <th>By Specie </th>
-
-            </tr>
-            </thead>
-
-            <tbody>
-            </tbody>
-          </table>
-          <% else %>
-            <% flash[:notice] = "No trees found, click Goto Tree Index" %>
-          <% end %>
-      </ul>
-    </div>
-

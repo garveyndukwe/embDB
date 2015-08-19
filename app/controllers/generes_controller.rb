@@ -3,7 +3,8 @@ class GeneresController < ApplicationController
   before_action :set_genere,  only: [:show, :edit, :update, :destroy]
 
   def index
-    @generes = Genere.all
+    #all_generes, @code = Genere.find_by_code(params[:code])
+    @generes = Genere.order(:code).page(params[:page]).per(20)
   end
 
   def new
@@ -25,6 +26,7 @@ class GeneresController < ApplicationController
   end
 
   def show
+
   end
 
   def update

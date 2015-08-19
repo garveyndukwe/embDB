@@ -2,15 +2,19 @@ class TreesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_project
   before_action :set_forest
-  before_action :set_tree, only: [:show, :edit, :update, :destroy]
+  before_action :set_tree, only: [ :show, :edit, :update, :destroy]
 
   def index
-    @trees = Tree.all
+    #@trees = Tree.all
+    @trees = Tree.order(:code).page(params[:page]).per(10)
+
   end
 
  def new
    @tree = @forest.trees.build
  end
+
+
 
   def create
     @tree = @forest.trees.build(tree_params)
