@@ -1,0 +1,40 @@
+<ul>
+  <h1>Status</h1>
+    <%= link_to "Add Status", new_status_path %>
+
+<br>
+    <% if @statuses.count > 0 %>
+        <table>
+          <thead>
+
+          <tr>
+            <th>Code </th><th colspan="2"></th>
+            <th>Description</th>
+
+
+          </tr>
+
+          </thead>
+
+
+        <ul>
+
+          <tbody>
+
+          <% @statuses.each do |sta| %>
+              <%#= render @statuss %>
+              <tr>
+                <td><i><%= link_to sta.code, sta %></i></td><td colspan="2"></td>
+                <td><%= sta.description%></td>
+                 <td> </td>
+
+              </tr>
+          <% end %>
+
+          </tbody>
+        </ul>
+        </table>
+        <% end  %>
+
+</ul>
+

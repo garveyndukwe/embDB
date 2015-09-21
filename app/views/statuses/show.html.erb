@@ -1,0 +1,16 @@
+<% full_title("Project") %>
+
+<ul>
+
+<h2>Status</h2>
+<br>
+<h4><%="Code :" << @status.code %></h4>
+<h4><%= "Description :" << @status.description %></h4>
+
+
+<%= link_to 'Goto Status Index', statuses_path %>      |
+<%= link_to 'Edit Status', edit_status_path(@status) %>      |
+<%= link_to 'Delete Status', @status, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to "Add Status", new_status_path(@status) %>
+
+</ul>

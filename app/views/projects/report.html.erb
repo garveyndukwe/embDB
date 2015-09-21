@@ -1,0 +1,59 @@
+<ul>
+  <h2>Reports for <%= @project.name %></h2>
+
+  <% @d_forests = @project.forests.order(:name)%>
+  <% d_species = Genere.all %>
+
+  <%= link_to "Back to Project",@project  %>   |
+  <%= link_to "By Forest"  %>   |
+  <%= link_to "By Specie" %>
+
+
+  <div>
+    <h2>Project Report by Forest</h2>
+
+    <% @d_forests.each do |forest| %>
+        <h3><%= forest.name %></h3>
+        <h3><%= "Specie #{forest.specie}" %></h3>
+          <table>
+            <thead>
+            <tr> <th colspan="1"></th> </tr>
+            <tr>
+              <th>Tree</th><th colspan="5"></th>
+              <th>Year</th><th colspan="6"></th>
+              <th>Girth(m)</th><th colspan="8"></th>
+              <th>Height(m)</th><th colspan="10"></th>
+
+            </tr>
+            </thead>
+            <%#= paginate @tree.measurements %>
+            <tbody>
+
+             <% forest.trees.each do |tree| %>
+                 <% tree.measurements.each do |measure| %>
+                      <%#= render @tree.measurements %>
+                      <tr>
+
+                        <td><%= measure.tree_code %></td>
+                        <td colspan="4" > </td>
+                        <td><%= measure.year_taken %></td>
+
+                        <td colspan="5" > </td>
+                        <td><%= measure.girth %></td>
+                        <td colspan="5" > </td>
+                        <td><%= measure.height %></td>
+                        <td colspan="2" > </td>
+
+                        </td>
+                      </tr>
+
+                <% end %>
+             <% end %>
+            </tbody>
+          </table>
+
+    <%end%>
+
+    </div>
+</ul>
+

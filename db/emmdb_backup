@@ -1,0 +1,6 @@
+"id","name","description","plantation","specie","established","enumerated","location","gps","area","comment","project_id","created_at","updated_at"
+"1","Awi Forest Reserve","A natural forest of FDF","f","1","1901-11-12","1980-02-03","Awi","320N 320E","234600.78","Enumeration stopped ","1","2015-08-10 17:43:53.998230","2015-08-10 17:55:33.759410"
+"2","Benin Palm Reserve","Palm produce board plantation for palm","t","16","1960-11-12","1980-02-04","Benin","87W 56S","34900.0","Purchased by Dunlop but maintained by FRIN","1","2015-08-10 17:53:58.348400","2015-08-20 13:14:13.525378"
+"3","SW Cocoa Reserve","Cocoa farms for research and development purposes","t","15","1960-04-19","1960-08-10","Ijebu Ode","54E 587W","43990843.23","Now owned by CRIN but measurements by FRIN","1","2015-08-10 18:41:09.380417","2015-08-14 23:25:09.987607"
+"4","Idasa Game Reserve","ADP natural forest conservation","f","Multiple","1960-07-28","1969-11-18","Afikpo","32E 760S","56409875.34","A resort is to be built by Ebonyi government","1","2015-08-10 18:46:28.862274","2015-08-10 18:46:28.862274"
+"5","Obudu Ranch Forest Teak Reserve","Teak plantation for future generation","t","3","1989-04-18","1990-10-08","Obudu","65En09S","239.0","New teak plantation","1","2015-08-15 02:08:24.904000","2015-08-15 02:08:24.904000"

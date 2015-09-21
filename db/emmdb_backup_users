@@ -1,0 +1,2 @@
+"id","email","encrypted_password","reset_password_token","reset_password_sent_at","remember_created_at","sign_in_count","current_sign_in_at","last_sign_in_at","current_sign_in_ip","last_sign_in_ip","created_at","updated_at"
+"1","garvey@frin.org","$2a$10$xa/iJA0M0F8qX9AL5s5EWu9CFI5XexJ9F3gVasWD6ZHIZqEi9VXIO",NULL,NULL,NULL,"7","2015-09-13 19:25:38.058137","2015-09-13 18:15:07.436374","::1","::1","2015-08-10 17:28:07.550587","2015-09-13 19:25:38.058137"
