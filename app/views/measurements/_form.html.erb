@@ -1,43 +1,48 @@
 
 <%= form_for([@project,@forest,@tree,@measurement]) do |f| %>
-  <% if @measurement.errors.any? %>
-    <div id="error_explanation">
-      <h4><%= pluralize(@measurement.errors.count, "error") %> prohibited this measurement from being saved:</h4>
+      <% if @measurement.errors.any? %>
+        <div id="error_explanation">
+          <ul>
+              <h4><%= pluralize(@measurement.errors.count, "error") %> prohibited this measurement from being saved:</h4>
 
-      <ul>
-      <% @measurement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+
+              <% @measurement.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <% if @measurement.id.nil? %>
-        <% @measurement.tree_code = @tree.code %>
-    <% else %>
-    <% end %>
+    <ul>
+
+          <div class="field">
+                <% if @measurement.id.nil? || @measurement.new_record? %>
+                    <% @measurement.tree_code = @tree.code %>
+                <% else %>
+                <% end %>
+            <%= f.label "Tree code " << @tree.code %><br>
+            <%= f.text_field :tree_code %>
+          </div>
 
 
-    <%= f.label "Tree code is " << @tree.code %><br>
-    <%= f.text_field :tree_code %>
-  </div>
+      <div class="field">
+        <%= f.label :year_taken %><br>
+        <%= f.number_field :year_taken, min: 1960,max:1990 %>
+      </div>
 
-    <div class="field">
-      <%= f.label :taken_at %><br>
-      <%= f.date_select :taken_at, start_year: 1960,end_year:1990 %>
-    </div>
 
-    <div class="field">
-    <%= f.label :girth %><br>
-    <%= f.text_field :girth %>
-  </div>
+        <div class="field">
+        <%= f.label :girth %><br>
+        <%= f.text_field :girth,step:0.01 %>
+      </div>
 
-    <div class="field">
-      <%= f.label :height %><br>
-      <%= f.text_field :height %>
-    </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+        <div class="field">
+          <%= f.label :height %><br>
+          <%= f.text_field :height %>
+        </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+
+   </ul>
 <% end %>

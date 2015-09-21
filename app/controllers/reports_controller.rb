@@ -1,13 +1,14 @@
 class ReportsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_project
   before_action :set_report,  only: [:show, :edit, :update, :destroy]
 
   def index
     @reports = Report.all
     @reports = Report.page(params[:page])
 
-
   end
+
   def by_specie
 
   end
@@ -49,11 +50,15 @@ class ReportsController < ApplicationController
 
   def destroy
     @report.destroy
-    flash[:notice] = "Specie has been destroyed."
+    flash[:notice] = "Report has been destroyed."
     redirect_to reports_path
   end
 
   private
+
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
 
   def report_params
     params.require(:report).permit(:code, :botanical_name,:common_name)

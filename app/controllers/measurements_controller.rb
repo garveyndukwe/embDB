@@ -7,7 +7,7 @@ class MeasurementsController < ApplicationController
     before_action :set_measure, only: [:show, :edit, :update, :destroy]
 
     def index
-      @measurements = Measurement.order(:tree_code).page(params[:page]).per(10)
+      @measurements = Measurement.order(:tree_code).page(params[:page]).per(20)
       redirect_to [@project,@forest, @tree]
     end
 
@@ -51,6 +51,7 @@ class MeasurementsController < ApplicationController
       @measurement.destroy
       flash[:notice] = "Measurement has been deleted"
       redirect_to @tree
+      redirect_to project_forest_tree_measurement_path #[@project, @forest]
 
     end
     private
@@ -73,7 +74,7 @@ class MeasurementsController < ApplicationController
       redirect_to project_forest_tree_measurements_path
     end
     def measure_params
-      params.require(:measurement).permit(:tree_code, :year, :girth, :height, :taken_at)
+      params.require(:measurement).permit(:tree_code, :year_taken, :girth, :height)
     end
 
 

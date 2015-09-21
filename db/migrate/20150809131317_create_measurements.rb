@@ -4,7 +4,7 @@ class CreateMeasurements < ActiveRecord::Migration
       t.string :tree_code
       t.decimal :girth
       t.decimal :height
-      t.date :taken_at
+      t.integer :year_taken
 
       t.references :tree, index: true
 

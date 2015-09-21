@@ -1,12 +1,9 @@
- <div id='forest'>
+<ul>
+  <h2><%= @project.name %></h2>
     <% full_title("Project") %>
-    <ul>
-        <h2><%= "Forest #{@forest.name}" %></h2>
-        <h3>
 
-
-          <%= simple_format(@forest.description) %>
-        </h3>
+        <h3><%= "Forest #{@forest.name}" %></h3>
+        <h4><%= simple_format(@forest.description) %></h4>
         <h6>
             <span id="author">Created by <%= current_user.email %></span>
         </h6>
@@ -43,9 +40,9 @@
             <%= number_with_delimiter(f.text_field :area) %> m<sup>3</sup>
         </p>
         <p>
-          <%= f.label "Enumerated on:" %>
+          <%= f.label "Esatablished on:" %>
           <%= @forest.established %>  ,
-          <%= f.label " Last Counted"%>
+          <%= f.label " Last Enumeration"%>
             <%= (@forest.enumerated) %>
         </p>
         <p>

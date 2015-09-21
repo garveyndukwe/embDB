@@ -25,7 +25,7 @@
             <th>Tree</th><th colspan="5"></th>
             <th>Girth(m)</th><th colspan="3"></th>
             <th>Height(m)</th><th colspan="3"></th>
-            <th>Date(mm/dd)</th> <th colspan="2"></th>
+            <th> Actions </th> <th colspan="2"></th>
           </tr>
           </thead>
              <%#= paginate @tree.measurements %>
@@ -33,18 +33,16 @@
           <% @tree.measurements.each do |measure| %>
           <%#= render @tree.measurements %>
               <tr>
-                <td><%= link_to measure.taken_at.year,[ @project, @forest, @tree, measure] %></td>
+                <td><%= link_to measure.year_taken,[ @project, @forest, @tree, measure] %></td>
                 <td colspan="3" > </td>
-                <td><%= measure.tree_code %></td>
+                <td><%=  measure.tree_code %></td>
                 <td colspan="3" > </td>
                 <td><%= measure.girth %></td>
                 <td colspan="3" > </td>
                 <td><%= measure.height %></td>
                 <td colspan="3" > </td>
-                <td><%= measure.taken_at.day.to_s << "/" << measure.taken_at.month.to_s %></td>
+                <td><%= link_to 'Edit',[:edit, @project, @forest, @tree, measure ] %></td>
 
-
-                </td>
               </tr>
           <% end %>
           </tbody>

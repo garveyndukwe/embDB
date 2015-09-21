@@ -19,6 +19,9 @@ Rails.application.routes.draw do
 
 
   resources :projects do
+    member do
+      get 'report'
+    end
     resources :forests do
       member do
         get 'generate'
@@ -30,8 +33,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :settings
   resources :generes
-  resources :species
+  resources :statuses
 
   #get 'measurements/new'
 #  get 'measurements/edit'

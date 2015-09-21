@@ -28,7 +28,7 @@
       </p>
 
       <p>
-        <%= f.label :number %><br/>
+        <%= f.label "Tree number" %><br/>
         <%= f.number_field :number, readonly: true %>
       </p>
 
@@ -36,7 +36,7 @@
         <%= f.label :specie %><br/>
         <% if @forest.plantation? %>
             <% @tree.specie= @forest.specie %>
-            <%= f.text_field :specie, readonly: true %>
+            <%#= f.number_field  :specie, readonly: true %>
             <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: false, readonly: true %>
          <% else %>
             <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true %>
@@ -45,14 +45,14 @@
        </p>
       <p>
         <%= f.label :status %><br/>
-        <%= f.text_field :status %>
+        <%=  f.collection_select :status, Status.all, :id, :code, prompt: true %>
       </p>
 
       <p>
         <%= f.label :comment %><br/>
         <%= f.text_area :comment %>
       </p>
-             <%= f.submit %>
+             <%= submit_or_cancel(f) %>
   </ul>
 </section>
 

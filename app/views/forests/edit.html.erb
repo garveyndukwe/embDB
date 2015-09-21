@@ -1,3 +1,11 @@
 <h2>Editing a forest in <%= @project.name %> </h2>
+<div class="actions">
+  <ul>
+    <%= link_to "Go to Forest Index", project_forests_path %>  |
+    <%= link_to "Show Forest", [ @project, @forest] %>
+  </ul>
+
+</div>
+<br>
 
 <%= render "form" %>

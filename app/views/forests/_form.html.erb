@@ -1,26 +1,27 @@
 
+<ul>
+
   <%= form_for([@project,@forest]) do |f| %>
     <% if @forest.errors.any? %>
         <div id = "error_explanation">
           <h2><%=  pluralize(@forest.errors.count,"error") %>
             prohibited this forest from being saved
           </h2>
-          <ul>
+
             <% @forest.errors.full_messages.each do |msg| %>
                 <li><%=  msg %></li>
             <% end %>
-          </ul>
         </div>
     <% end %>
 
-    <ul>
+
                 <div class="field">
                   <%= f.label :name %><br/>
                   <%= f.text_field :name %>
                 </div>
                 <div class="field">
                   <%= f.label :description %><br/>
-                  <%= f.text_area :description, rows:3, cols:40 %>
+                  <%= f.text_area :description, rows:2, cols:40 %>
                 </div>
                 <div class="field">
                   <%= f.label :plantation %><br/>
@@ -29,21 +30,19 @@
                 </div>
 
                 <div class="field">
-
-
                   <% if @forest.new_record? %>
                       <%= f.label :specie %><br/>
-                    <% if @forest.plantation? %>
-                          <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true %>
-                      <% else %>
-                          <%= @forest.specie= 1 %>
-                          <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true,readonly: true %>
-                      <% end %>
+                        <% if @forest.plantation? %>
+                              <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true %>
+                          <% else %>
+                              <% @forest.specie= 1 %>
+                              <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: false,readonly: true %>
+                          <% end %>
 
                   <% else %>
                       <%= f.label 'Specie should not be changed' %><br/>
-                      <%= specie= @forest.specie %><br/>
-                      <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: true, readonly: true %>
+                      <% @forest.specie= 1 %><br/>
+                      <%=  f.collection_select :specie, Genere.all, :id, :botanical_name, prompt: false, readonly: true %>
                   <% end %>
                 </div>
 
@@ -71,19 +70,17 @@
                 </div>
                 <div class="field">
                   <%= f.label :comment %><br/>
-                  <%= f.text_area :comment, rows: 3, cols:60 %>
+                  <%= f.text_area :comment, rows: 2, cols:30 %>
                 </div>
 
-       <div class="actions">
-              <%if @forest.new_record? %>
-                  <% f.submit 'Create Forest'%>
-                    <% else %>
-                       `<%if specie != @forest.specie %>
-                          <%= flash[:alert] ='Specie has been be changed' %>
-                          <% else %>
-                         <% end %>`
-                  <% f.submit 'Update Forest Changes'%>
-              <% end %>
-       </div>
-    </ul>
-<% end %>
+
+      <div class="actions">
+        <%if @forest.new_record? %>
+            <%= f.submit 'Create Forest' %>
+        <% else %>
+            <%= f.submit 'Update Forest' %>
+        <% end %>
+      </div>
+
+    <% end %>
+</ul>

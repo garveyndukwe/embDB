@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812082715) do
+ActiveRecord::Schema.define(version: 20150913072140) do
 
   create_table "forests", force: :cascade do |t|
     t.string   "name"
@@ -43,11 +43,13 @@ ActiveRecord::Schema.define(version: 20150812082715) do
     t.string   "tree_code"
     t.decimal  "girth"
     t.decimal  "height"
-    t.date     "taken_at"
+    t.integer  "year_taken"
     t.integer  "tree_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "measurements", ["tree_id"], name: "index_measurements_on_tree_id"
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -56,24 +58,18 @@ ActiveRecord::Schema.define(version: 20150812082715) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "rels", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "species", force: :cascade do |t|
+  create_table "statuses", force: :cascade do |t|
     t.string   "code"
-    t.string   "botanical_name"
-    t.string   "common_name"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "trees", force: :cascade do |t|
     t.string   "code"
     t.integer  "number"
-    t.string   "specie"
-    t.string   "status"
+    t.integer  "specie"
+    t.integer  "status"
     t.string   "comment"
     t.integer  "forest_id"
     t.datetime "created_at", null: false

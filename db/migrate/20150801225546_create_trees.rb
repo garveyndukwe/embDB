@@ -3,8 +3,8 @@ class CreateTrees < ActiveRecord::Migration
     create_table :trees do |t|
       t.string :code
       t.integer :number
-      t.string :specie
-      t.string :status
+      t.integer :specie
+      t.integer :status
       t.string :comment
       t.references :forest, index: true
 

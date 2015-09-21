@@ -2,8 +2,9 @@
   <div class="container">
 
     <ul class="nav navbar-nav navbar-left">
-        <%= link_to "About",   root_path %>   |
-        <%= link_to "Contact", root_path %>   |
+
+        <%= link_to_unless_current( "About",   root_path) %>   |
+        <%= link_to_unless_current("Contact", root_path) %>   |
         <a href="http://news.frin.org.ng/">News  </a>
     </ul>
     <ul class="nav navbar-nav navbar-left">

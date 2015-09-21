@@ -7,8 +7,8 @@
   <thead>
 
   <tr>
-    <th>Code name </th><th colspan="2"></th>
-    <th>Botanical name</th>
+    <th>Botanical name </th><th colspan="2"></th>
+    <th>Local name</th>
     <th>Common name</th>
 
   </tr>
@@ -24,10 +24,8 @@
   <% @generes.each do |gen| %>
       <%#= render @generes %>
       <tr>
-        <td><%= link_to gen.code, gen %></td><td colspan="2"></td>
-
-
-        <td><i><%= gen.botanical_name%></i></td>
+        <td><i><%= link_to gen.botanical_name, gen %></i></td><td colspan="2"></td>
+        <td><%=  gen.code %></td>
         <td><%= gen.common_name%></td>
 
          <td> </td>
